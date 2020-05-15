@@ -33,7 +33,7 @@ namespace Application.Colors
                     DivisionId = request.DivisionId,
                     FabricId = request.FabricId,
                     ColorName = request.ColorName
-                }
+                };
 
                 _context.Add(color);
                 var success = await _context.SaveChangesAsync() > 0 ;
