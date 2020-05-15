@@ -27,5 +27,11 @@ namespace API.Controllers
             return await _mediator.Send(new List.Query());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Color>> Details(string id)
+        {
+            return await _mediator.Send(new Details.Query{ColorId = id});
+        }
+
     }
 }

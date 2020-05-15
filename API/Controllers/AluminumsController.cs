@@ -26,5 +26,11 @@ namespace API.Controllers
             return await _mediator.Send(new List.Query());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Aluminum>> Details(string id)
+        {
+            return await _mediator.Send(new Details.Query{AluminumId = id});
+        }
+
     }
 }
