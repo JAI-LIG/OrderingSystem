@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Colors;
 using Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -11,28 +13,19 @@ namespace API.Controllers
     [ApiController]
     public class ColorsController : ControllerBase
     {
-       private readonly DataContext _context;
+        private readonly IMediator _mediator;
 
-        public ColorsController(DataContext context)
+        public ColorsController(IMediator mediator)
         {
-            _context = context;
-
+            _mediator = mediator;
 
         }
         // GET api/values
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Color>>> Get()
+        public async Task<ActionResult<List<Color>>> List()
         {
-            var colors = await _context.Colors.ToListAsync();
-            return Ok(colors);
+            return await _mediator.Send(new List.Query());
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<string>> Get(string id)
-        {
-            var value = await _context.Colors.FindAsync(id);
-            return Ok(value);
-        }  
     }
 }

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Aluminums;
 using Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -11,24 +13,18 @@ namespace API.Controllers
     [ApiController]
     public class AluminumsController : ControllerBase
     {
-        private readonly DataContext _context;
-        public AluminumsController(DataContext context)
+
+        private readonly IMediator _mediator;
+        public AluminumsController(IMediator mediator)
         {
-            _context = context;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Aluminum>>> Get()
+        public async Task<ActionResult<List<Aluminum>>> List()
         {
-            var aluminum = await _context.Aluminums.ToListAsync();
-            return Ok(aluminum);
+            return await _mediator.Send(new List.Query());
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Aluminum>> Get(string id)
-        {
-            var aluminum = await _context.Aluminums.FindAsync(id);
-            return Ok(aluminum);
-        }
     }
 }
