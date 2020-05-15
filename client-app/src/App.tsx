@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import { Header, Icon, List } from "semantic-ui-react";
 import "./App.css";
-import axios from 'axios';
+import axios from "axios";
 
 class App extends Component {
   state = {
@@ -9,27 +9,26 @@ class App extends Component {
   };
 
   componentDidMount() {
-    axios.get('http://localhost:5001/api/aluminums')
-      .then((response) => {
-        console.log(response)
-        this.setState({
-          aluminums: response.data
-           });        
+    axios.get("http://localhost:5001/api/aluminums").then((response) => {
+      console.log(response);
+      this.setState({
+        aluminums: response.data,
       });
-
+    });
   }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <ul>
-            {this.state.aluminums.map((aluminum: any) =>
-              <li key={aluminum.aluminumId}>{aluminum.aluminumName}</li>
-            )}
-          </ul>
-        </header> 
+      <div>
+        <Header as="h2">
+          <Icon name="boxes" />
+          <Header.Content>Aluminum</Header.Content>
+        </Header>
+        <List>
+        {this.state.aluminums.map((aluminum: any) => (
+           <List.Item key={aluminum.aluminumId}>{aluminum.aluminumName}</List.Item>
+          ))}  
+        </List>
       </div>
     );
   }
