@@ -29,7 +29,7 @@ namespace API.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<string>> Get(int id)
+        public async Task<ActionResult<string>> Get(string id)
         {
             var value = await _context.Colors.FindAsync(id);
             return Ok(value);

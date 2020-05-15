@@ -25,7 +25,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Aluminum>> Get(int id)
+        public async Task<ActionResult<Aluminum>> Get(string id)
         {
             var aluminum = await _context.Aluminums.FindAsync(id);
             return Ok(aluminum);
