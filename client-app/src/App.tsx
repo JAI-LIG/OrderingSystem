@@ -15,7 +15,7 @@ class App extends Component {
         this.setState({
           aluminums: response.data
            });        
-      })
+      });
 
   }
 
@@ -25,11 +25,11 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <ul>
-            {this.state.aluminums.map((aluminum: any) => (
-              <li>{aluminum.AluminumName}</li>
-            ))}
+            {this.state.aluminums.map((aluminum: any) =>
+              <li key={aluminum.aluminumId}>{aluminum.aluminumName}</li>
+            )}
           </ul>
-        </header>
+        </header> 
       </div>
     );
   }
