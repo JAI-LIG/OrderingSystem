@@ -38,5 +38,12 @@ namespace API.Controllers
             return await _mediator.Send(command);
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Unit>> Edit (string id, Edit.Command command)
+        {
+            command.AluminumId = id;
+            return await _mediator.Send(command);
+        }
+
     }
 }
