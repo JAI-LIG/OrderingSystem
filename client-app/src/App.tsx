@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import axios from 'axios';
 
 class App extends Component {
   state = {
@@ -8,13 +9,14 @@ class App extends Component {
   };
 
   componentDidMount() {
-    
-    this.setState({
-      aluminums: [
-        { AluminumId: "A-023", AluminumName: "new Aluminum23" },
-        { AluminumId: "A-323", AluminumName: "new Aluminum323" },
-      ],
-    });
+    axios.get('http://localhost:5001/api/aluminums')
+      .then((response) => {
+        console.log(response)
+        this.setState({
+          aluminums: response.data
+           });        
+      })
+
   }
 
   render() {
