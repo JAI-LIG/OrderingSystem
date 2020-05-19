@@ -1,17 +1,29 @@
 import React, { Component } from "react";
 import { Header, Icon, List } from "semantic-ui-react";
 import axios from "axios";
+import { IAluminum } from "../models/aluminum";
+import { IColor } from "../models/color";
 
-class App extends Component {
-  state = {
+interface IState {
+  aluminums: IAluminum[],
+  colors: IColor[]
+}
+class App extends Component<{}, IState> {
+  state: IState = {
     aluminums: [],
+    colors: []
   };
 
   componentDidMount() {
-    axios.get("http://localhost:5001/api/aluminums").then((response) => {
+    axios.get<IAluminum[]>("http://localhost:5001/api/aluminums").then((response) => {
       console.log(response);
       this.setState({
         aluminums: response.data,
+      });
+    });
+    axios.get<IColor[]>("http://localhost:5001/api/colors").then((response) => {
+      this.setState({
+        colors: response.data
       });
     });
   }
@@ -24,8 +36,13 @@ class App extends Component {
           <Header.Content>Aluminum</Header.Content>
         </Header>
         <List>
-        {this.state.aluminums.map((aluminum: any) => (
+        {this.state.aluminums.map((aluminum) => (
            <List.Item key={aluminum.aluminumId}>{aluminum.aluminumName}</List.Item>
+          ))}  
+        </List>
+        <List>
+        {this.state.colors.map((color) => (
+           <List.Item key={color.colorId}>{color.colorName}, {color.divisionId}, {color.fabricId}</List.Item>
           ))}  
         </List>
       </div>
