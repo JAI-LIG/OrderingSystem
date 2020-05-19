@@ -3,6 +3,7 @@ import { Header, Icon, List } from "semantic-ui-react";
 import axios from "axios";
 import { IAluminum } from "../models/aluminum";
 import { IColor } from "../models/color";
+import NavBar from "../../features/nav/NavBar";
 
 
 const App = () => {
@@ -21,10 +22,7 @@ const App = () => {
 
     return (
       <div>
-        <Header as="h2">
-          <Icon name="boxes" />
-          <Header.Content>Aluminum</Header.Content>
-        </Header>
+        <NavBar/>
         <List>
         {aluminums.map((aluminum) => (
            <List.Item key={aluminum.aluminumId}>{aluminum.aluminumName}</List.Item>
