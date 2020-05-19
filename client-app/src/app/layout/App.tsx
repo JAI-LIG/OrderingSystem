@@ -1,34 +1,24 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Header, Icon, List } from "semantic-ui-react";
 import axios from "axios";
 import { IAluminum } from "../models/aluminum";
 import { IColor } from "../models/color";
 
-interface IState {
-  aluminums: IAluminum[],
-  colors: IColor[]
-}
-class App extends Component<{}, IState> {
-  state: IState = {
-    aluminums: [],
-    colors: []
-  };
 
-  componentDidMount() {
-    axios.get<IAluminum[]>("http://localhost:5001/api/aluminums").then((response) => {
+const App = () => {
+  const [aluminums, setAluminums] = useState<IAluminum[]>([]);
+  const [colors, setColors] = useState<IColor[]>([]);
+
+  useEffect(() => {
+     axios.get<IAluminum[]>("http://localhost:5001/api/aluminums").then((response) => {
       console.log(response);
-      this.setState({
-        aluminums: response.data,
-      });
+      setAluminums(response.data);
     });
     axios.get<IColor[]>("http://localhost:5001/api/colors").then((response) => {
-      this.setState({
-        colors: response.data
-      });
-    });
-  }
+      setColors(response.data);
+    });   
+  }, [])
 
-  render() {
     return (
       <div>
         <Header as="h2">
@@ -36,18 +26,17 @@ class App extends Component<{}, IState> {
           <Header.Content>Aluminum</Header.Content>
         </Header>
         <List>
-        {this.state.aluminums.map((aluminum) => (
+        {aluminums.map((aluminum) => (
            <List.Item key={aluminum.aluminumId}>{aluminum.aluminumName}</List.Item>
           ))}  
         </List>
         <List>
-        {this.state.colors.map((color) => (
+        {colors.map((color) => (
            <List.Item key={color.colorId}>{color.colorName}, {color.divisionId}, {color.fabricId}</List.Item>
           ))}  
         </List>
       </div>
     );
-  }
 }
 
 export default App;
