@@ -1,23 +1,21 @@
 import React from "react";
-import { Grid, List } from "semantic-ui-react";
+import { Grid, List, Segment, Header } from "semantic-ui-react";
 import { IAluminum } from "../../../app/models/aluminum";
+import AluminumList from "./AluminumList";
 
 interface IProps {
-    aluminums: IAluminum[]
+  aluminums: IAluminum[];
 }
-const AluminumDashboard: React.FC<IProps> = ({aluminums}) => {
+const AluminumDashboard: React.FC<IProps> = ({ aluminums }) => {
   return (
-    <Grid>
-      <Grid.Column width={10}>
-        <List>
-          {aluminums.map((aluminum) => (
-            <List.Item key={aluminum.aluminumId}>
-              {aluminum.aluminumName}
-            </List.Item>
-          ))}
-        </List>
-      </Grid.Column>
-    </Grid>
+    <Segment>
+        <Header content='Aluminum'/>
+      <Grid>
+        <Grid.Column width={10}>
+          <AluminumList aluminums={aluminums} />
+        </Grid.Column>
+      </Grid>
+    </Segment>
   );
 };
 
