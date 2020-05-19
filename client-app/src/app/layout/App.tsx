@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Header, Icon, List } from "semantic-ui-react";
+import React, { useState, useEffect, Fragment } from "react";
+import { List, Container } from "semantic-ui-react";
 import axios from "axios";
 import { IAluminum } from "../models/aluminum";
 import { IColor } from "../models/color";
@@ -21,8 +21,9 @@ const App = () => {
   }, [])
 
     return (
-      <div>
+      <Fragment>
         <NavBar/>
+        <Container style={{marginTop: '10em'}}>
         <List>
         {aluminums.map((aluminum) => (
            <List.Item key={aluminum.aluminumId}>{aluminum.aluminumName}</List.Item>
@@ -32,8 +33,9 @@ const App = () => {
         {colors.map((color) => (
            <List.Item key={color.colorId}>{color.colorName}, {color.divisionId}, {color.fabricId}</List.Item>
           ))}  
-        </List>
-      </div>
+        </List>          
+        </Container>
+      </Fragment>
     );
 }
 
