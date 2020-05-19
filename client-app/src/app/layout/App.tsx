@@ -4,6 +4,8 @@ import axios from "axios";
 import { IAluminum } from "../models/aluminum";
 import { IColor } from "../models/color";
 import NavBar from "../../features/nav/NavBar";
+import AluminumDashboard from "../../features/aluminum/dashboard/AluminumDashboard";
+import ColorDashboard from "../../features/color/dashboard/ColorDashboard";
 
 
 const App = () => {
@@ -24,16 +26,8 @@ const App = () => {
       <Fragment>
         <NavBar/>
         <Container style={{marginTop: '10em'}}>
-        <List>
-        {aluminums.map((aluminum) => (
-           <List.Item key={aluminum.aluminumId}>{aluminum.aluminumName}</List.Item>
-          ))}  
-        </List>
-        <List>
-        {colors.map((color) => (
-           <List.Item key={color.colorId}>{color.colorName}, {color.divisionId}, {color.fabricId}</List.Item>
-          ))}  
-        </List>          
+        <AluminumDashboard aluminums={aluminums}/>
+        <ColorDashboard colors ={colors}/>         
         </Container>
       </Fragment>
     );
