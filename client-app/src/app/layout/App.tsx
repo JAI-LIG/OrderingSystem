@@ -9,9 +9,9 @@ import ColorDashboard from "../../features/color/dashboard/ColorDashboard";
 
 const App = () => {
   const [aluminums, setAluminums] = useState<IAluminum[]>([]);
-  const [selectedAluminum, setSelectedAluminum] = useState<IAluminum | null>();
+  const [selectedAluminum, setSelectedAluminum] = useState<IAluminum | null>(null);
   const [colors, setColors] = useState<IColor[]>([]);
-  const [selectedColor, setSelectedColor] = useState<IColor | null>();
+  const [selectedColor, setSelectedColor] = useState<IColor | null>(null);
 
   const handleSelectAluminum = (id: string) => {
     setSelectedAluminum(aluminums.filter((a) => a.aluminumId === id)[0]);

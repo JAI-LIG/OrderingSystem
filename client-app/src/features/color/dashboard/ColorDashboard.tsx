@@ -8,7 +8,7 @@ import ColorForm from "../form/ColorForm";
 interface IProps {
   colors: IColor[];
   selectColor: (id: string) => void;
-  selectedColor: IColor | null | undefined;
+  selectedColor: IColor | null;
 }
 
 const ColorDashboard: React.FC<IProps> = ({ colors, selectColor, selectedColor }) => {

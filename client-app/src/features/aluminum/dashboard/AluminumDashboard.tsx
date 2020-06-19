@@ -8,7 +8,7 @@ import AluminumForm from "../form/AluminumForm";
 interface IProps {
   aluminums: IAluminum[];
   selectAluminum: (id: string) => void;
-  selectedAluminum: IAluminum | null | undefined;
+  selectedAluminum: IAluminum | null;
 }
 const AluminumDashboard: React.FC<IProps> = ({
   aluminums,
