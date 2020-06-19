@@ -7,18 +7,24 @@ import AluminumForm from "../form/AluminumForm";
 
 interface IProps {
   aluminums: IAluminum[];
+  selectAluminum: (id: string) => void;
+  selectedAluminum: IAluminum | null | undefined;
 }
-const AluminumDashboard: React.FC<IProps> = ({ aluminums }) => {
+const AluminumDashboard: React.FC<IProps> = ({
+  aluminums,
+  selectAluminum,
+  selectedAluminum,
+}) => {
   return (
     <Segment clearing>
-        <Header content='Aluminum'/>
+      <Header content="Aluminum" />
       <Grid>
         <Grid.Column width={10}>
-          <AluminumList aluminums={aluminums} />
+          <AluminumList aluminums={aluminums} selectAluminum={selectAluminum} />
         </Grid.Column>
         <GridColumn width={6}>
-            <AluminumDetails/>
-            <AluminumForm/>
+          {selectedAluminum && <AluminumDetails aluminum={selectedAluminum} />}
+          <AluminumForm />
         </GridColumn>
       </Grid>
     </Segment>

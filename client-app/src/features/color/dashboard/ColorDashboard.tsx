@@ -7,18 +7,20 @@ import ColorForm from "../form/ColorForm";
 
 interface IProps {
   colors: IColor[];
+  selectColor: (id: string) => void;
+  selectedColor: IColor | null | undefined;
 }
 
-const ColorDashboard: React.FC<IProps> = ({ colors }) => {
+const ColorDashboard: React.FC<IProps> = ({ colors, selectColor, selectedColor }) => {
   return (
     <Segment >
        <Header content="Fabric Colors"/>
       <Grid>
         <Grid.Column width={10}>
-          <ColorList colors={colors} />
+          <ColorList colors={colors} selectColor={selectColor}/>
         </Grid.Column>
         <Grid.Column width={6}>
-          <ColorDetails/>
+          {selectedColor && <ColorDetails color={selectedColor}/>}
           <ColorForm/>
         </Grid.Column>
       </Grid>

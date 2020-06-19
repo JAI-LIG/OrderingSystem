@@ -4,8 +4,9 @@ import { IColor } from "../../../app/models/color";
 
 interface IProps {
   colors: IColor[];
+  selectColor: (id: string) => void;
 }
-const ColorList: React.FC<IProps> = ({ colors }) => {
+const ColorList: React.FC<IProps> = ({ colors, selectColor }) => {
   return (
     <Segment>
       <Item.Group divided>
@@ -18,7 +19,7 @@ const ColorList: React.FC<IProps> = ({ colors }) => {
               <Item.Meta>{color.divisionId}</Item.Meta>
               <Item.Description>{color.fabricId}</Item.Description>
               <Item.Extra>
-                <Button floated="right" content="View" color="blue" />
+                <Button onClick={() => selectColor(color.colorId)} floated="right" content="View" color="blue" />
               </Item.Extra>
             </Item.Content>
           </Item>

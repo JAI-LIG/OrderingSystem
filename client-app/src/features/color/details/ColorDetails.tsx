@@ -1,16 +1,22 @@
 import React from "react";
 import { Card, Icon, Image, Button } from "semantic-ui-react";
+import { IColor } from "../../../app/models/color";
 
-const ColorDetails = () => {
+interface IProps {
+  color: IColor
+}
+
+const ColorDetails: React.FC<IProps> = ({color}) => {
   return (
     <Card fluid>
       <Image src="/assets/placeholder.png" wrapped ui={false} />
       <Card.Content>
-        <Card.Header>Color Name</Card.Header>
+        <Card.Header>{color.colorName}</Card.Header>
         <Card.Meta>
-          <span className="date">FabricId</span>
+          <span>{color.colorId}</span>
+          <span>{color.fabricId}</span>
         </Card.Meta>
-        <Card.Description>Divisition Id</Card.Description>
+        <Card.Description>{color.divisionId}</Card.Description>
       </Card.Content>
       <Card.Content extra>
         <Button.Group widths={2}>

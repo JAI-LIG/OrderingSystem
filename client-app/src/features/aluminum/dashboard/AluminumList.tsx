@@ -4,12 +4,12 @@ import { IAluminum } from "../../../app/models/aluminum";
 
 interface IProps {
   aluminums: IAluminum[];
+  selectAluminum: (id: string) => void;
 }
-const AluminumList: React.FC<IProps> = ({ aluminums }) => {
+const AluminumList: React.FC<IProps> = ({ aluminums, selectAluminum }) => {
   return (
     <Segment clearing>
-      
-        <Item.Group divided>
+      <Item.Group divided>
         {aluminums.map((aluminum) => (
           <Item key={aluminum.aluminumId}>
             <Item.Content>
@@ -18,14 +18,18 @@ const AluminumList: React.FC<IProps> = ({ aluminums }) => {
                 <Image src="" />
               </Item.Description>
               <Item.Extra>
-                <Button floated="right" content="View" color="blue" />
+                <Button
+                  onClick={() => selectAluminum(aluminum.aluminumId)}
+                  floated="right"
+                  content="View"
+                  color="blue"
+                />
                 <Label basic content={aluminum.aluminumId} />
               </Item.Extra>
             </Item.Content>
           </Item>
-          ))}
-        </Item.Group>
-      
+        ))}
+      </Item.Group>
     </Segment>
   );
 };

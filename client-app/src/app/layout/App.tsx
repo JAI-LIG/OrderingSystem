@@ -9,7 +9,17 @@ import ColorDashboard from "../../features/color/dashboard/ColorDashboard";
 
 const App = () => {
   const [aluminums, setAluminums] = useState<IAluminum[]>([]);
+  const [selectedAluminum, setSelectedAluminum] = useState<IAluminum | null>();
   const [colors, setColors] = useState<IColor[]>([]);
+  const [selectedColor, setSelectedColor] = useState<IColor | null>();
+
+  const handleSelectAluminum = (id: string) => {
+    setSelectedAluminum(aluminums.filter((a) => a.aluminumId === id)[0]);
+  };
+
+  const handleSelectedColor = (id: string) => {
+    setSelectedColor(colors.filter((a) => a.colorId === id)[0]);
+  };
 
   useEffect(() => {
     axios
@@ -27,8 +37,16 @@ const App = () => {
     <Fragment>
       <NavBar />
       <Container style={{ marginTop: "5em" }}>
-        <AluminumDashboard aluminums={aluminums} />
-        <ColorDashboard colors={colors} />
+        <AluminumDashboard
+          aluminums={aluminums}
+          selectAluminum={handleSelectAluminum}
+          selectedAluminum={selectedAluminum}
+        />
+        <ColorDashboard
+          colors={colors}
+          selectColor={handleSelectedColor}
+          selectedColor={selectedColor}
+        />
       </Container>
     </Fragment>
   );
