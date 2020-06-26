@@ -9,19 +9,27 @@ interface IProps {
   colors: IColor[];
   selectColor: (id: string) => void;
   selectedColor: IColor | null;
+  editModeColor: boolean;
+  setEditModeColor: (editModeColor: boolean) => void;
 }
 
-const ColorDashboard: React.FC<IProps> = ({ colors, selectColor, selectedColor }) => {
+const ColorDashboard: React.FC<IProps> = ({
+  colors,
+  selectColor,
+  selectedColor,
+  editModeColor,
+  setEditModeColor,
+}) => {
   return (
-    <Segment >
-       <Header content="Fabric Colors"/>
+    <Segment>
+      <Header content="Fabric Colors" />
       <Grid>
         <Grid.Column width={10}>
-          <ColorList colors={colors} selectColor={selectColor}/>
+          <ColorList colors={colors} selectColor={selectColor} />
         </Grid.Column>
         <Grid.Column width={6}>
-          {selectedColor && <ColorDetails color={selectedColor}/>}
-          <ColorForm/>
+          {selectedColor && !editModeColor && <ColorDetails color={selectedColor} setEditModeColor={setEditModeColor} />}
+          {editModeColor && <ColorForm />}
         </Grid.Column>
       </Grid>
     </Segment>

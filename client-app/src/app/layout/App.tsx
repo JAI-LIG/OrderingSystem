@@ -12,6 +12,8 @@ const App = () => {
   const [selectedAluminum, setSelectedAluminum] = useState<IAluminum | null>(null);
   const [colors, setColors] = useState<IColor[]>([]);
   const [selectedColor, setSelectedColor] = useState<IColor | null>(null);
+  const [editModeAlu, setEditModeAlu] = useState(false);
+  const [editModeColor, setEditModeColor] = useState(false);
 
   const handleSelectAluminum = (id: string) => {
     setSelectedAluminum(aluminums.filter((a) => a.aluminumId === id)[0]);
@@ -41,11 +43,16 @@ const App = () => {
           aluminums={aluminums}
           selectAluminum={handleSelectAluminum}
           selectedAluminum={selectedAluminum}
+          editModeAlu={editModeAlu}
+          setEditModeAlu={setEditModeAlu}
         />
         <ColorDashboard
           colors={colors}
           selectColor={handleSelectedColor}
           selectedColor={selectedColor}
+          editModeColor={editModeColor}
+          setEditModeColor={setEditModeColor}
+          
         />
       </Container>
     </Fragment>

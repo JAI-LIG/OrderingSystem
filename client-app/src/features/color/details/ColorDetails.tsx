@@ -3,10 +3,11 @@ import { Card, Icon, Image, Button } from "semantic-ui-react";
 import { IColor } from "../../../app/models/color";
 
 interface IProps {
-  color: IColor
+  color: IColor;
+  setEditModeColor: (editModeColor: boolean) => void;
 }
 
-const ColorDetails: React.FC<IProps> = ({color}) => {
+const ColorDetails: React.FC<IProps> = ({color, setEditModeColor}) => {
   return (
     <Card fluid>
       <Image src="/assets/placeholder.png" wrapped ui={false} />
@@ -20,7 +21,7 @@ const ColorDetails: React.FC<IProps> = ({color}) => {
       </Card.Content>
       <Card.Content extra>
         <Button.Group widths={2}>
-          <Button basic color="blue" content="Edit" />
+          <Button onClick={() => setEditModeColor(true)} basic color="blue" content="Edit" />
           <Button basic color="grey" content="Cancel" />
         </Button.Group>
       </Card.Content>

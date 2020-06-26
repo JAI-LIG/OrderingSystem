@@ -9,11 +9,15 @@ interface IProps {
   aluminums: IAluminum[];
   selectAluminum: (id: string) => void;
   selectedAluminum: IAluminum | null;
+  editModeAlu: boolean;
+  setEditModeAlu: (editModeAlu: boolean) => void;
 }
 const AluminumDashboard: React.FC<IProps> = ({
   aluminums,
   selectAluminum,
   selectedAluminum,
+  editModeAlu,
+  setEditModeAlu,
 }) => {
   return (
     <Segment clearing>
@@ -23,8 +27,13 @@ const AluminumDashboard: React.FC<IProps> = ({
           <AluminumList aluminums={aluminums} selectAluminum={selectAluminum} />
         </Grid.Column>
         <GridColumn width={6}>
-          {selectedAluminum && <AluminumDetails aluminum={selectedAluminum} />}
-          <AluminumForm />
+          {selectedAluminum && !editModeAlu && (
+            <AluminumDetails
+              aluminum={selectedAluminum}
+              setEditModeAlu={setEditModeAlu}
+            />
+          )}
+          {editModeAlu && <AluminumForm />}
         </GridColumn>
       </Grid>
     </Segment>

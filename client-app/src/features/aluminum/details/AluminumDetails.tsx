@@ -3,9 +3,10 @@ import { Card, Image, Icon, Button } from "semantic-ui-react";
 import { IAluminum } from "../../../app/models/aluminum";
 
 interface IProps {
-  aluminum: IAluminum
+  aluminum: IAluminum;
+  setEditModeAlu: (editModeAlu: boolean) => void;
 }
-const AluminumDetails: React.FC<IProps> = ({aluminum}) => {
+const AluminumDetails: React.FC<IProps> = ({aluminum, setEditModeAlu}) => {
   return (
     <Card fluid>
       <Image src={`/assets/AluminumColors/${aluminum.aluminumName}.jpg`} wrapped ui={false} />
@@ -15,7 +16,7 @@ const AluminumDetails: React.FC<IProps> = ({aluminum}) => {
       </Card.Content>
       <Card.Content extra>
         <Button.Group widths={2}>
-          <Button basic color="blue" content="Edit" />
+          <Button onClick={() => setEditModeAlu(true)} basic color="blue" content="Edit" />
           <Button basic color="grey" content="Cancel" />
         </Button.Group>
       </Card.Content>
