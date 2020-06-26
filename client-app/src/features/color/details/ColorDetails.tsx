@@ -5,9 +5,10 @@ import { IColor } from "../../../app/models/color";
 interface IProps {
   color: IColor;
   setEditModeColor: (editModeColor: boolean) => void;
+  setSelectedColor: (color: IColor | null) => void;
 }
 
-const ColorDetails: React.FC<IProps> = ({color, setEditModeColor}) => {
+const ColorDetails: React.FC<IProps> = ({color, setEditModeColor, setSelectedColor}) => {
   return (
     <Card fluid>
       <Image src="/assets/placeholder.png" wrapped ui={false} />
@@ -22,7 +23,7 @@ const ColorDetails: React.FC<IProps> = ({color, setEditModeColor}) => {
       <Card.Content extra>
         <Button.Group widths={2}>
           <Button onClick={() => setEditModeColor(true)} basic color="blue" content="Edit" />
-          <Button basic color="grey" content="Cancel" />
+          <Button onClick={() => setSelectedColor(null)} basic color="grey" content="Cancel" />
         </Button.Group>
       </Card.Content>
     </Card>

@@ -11,6 +11,7 @@ interface IProps {
   selectedColor: IColor | null;
   editModeColor: boolean;
   setEditModeColor: (editModeColor: boolean) => void;
+  setSelectedColor: (color: IColor | null) => void;
 }
 
 const ColorDashboard: React.FC<IProps> = ({
@@ -19,6 +20,7 @@ const ColorDashboard: React.FC<IProps> = ({
   selectedColor,
   editModeColor,
   setEditModeColor,
+  setSelectedColor
 }) => {
   return (
     <Segment>
@@ -28,8 +30,14 @@ const ColorDashboard: React.FC<IProps> = ({
           <ColorList colors={colors} selectColor={selectColor} />
         </Grid.Column>
         <Grid.Column width={6}>
-          {selectedColor && !editModeColor && <ColorDetails color={selectedColor} setEditModeColor={setEditModeColor} />}
-          {editModeColor && <ColorForm />}
+          {selectedColor && !editModeColor && (
+            <ColorDetails
+              color={selectedColor}
+              setEditModeColor={setEditModeColor}
+              setSelectedColor={setSelectedColor}
+            />
+          )}
+          {editModeColor && <ColorForm setEditModeColor={setEditModeColor} />}
         </Grid.Column>
       </Grid>
     </Segment>

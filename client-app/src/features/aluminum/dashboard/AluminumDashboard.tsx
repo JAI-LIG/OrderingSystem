@@ -11,6 +11,7 @@ interface IProps {
   selectedAluminum: IAluminum | null;
   editModeAlu: boolean;
   setEditModeAlu: (editModeAlu: boolean) => void;
+  setSelectedAluminum: (aluminum: IAluminum | null) => void;
 }
 const AluminumDashboard: React.FC<IProps> = ({
   aluminums,
@@ -18,6 +19,7 @@ const AluminumDashboard: React.FC<IProps> = ({
   selectedAluminum,
   editModeAlu,
   setEditModeAlu,
+  setSelectedAluminum
 }) => {
   return (
     <Segment clearing>
@@ -31,9 +33,11 @@ const AluminumDashboard: React.FC<IProps> = ({
             <AluminumDetails
               aluminum={selectedAluminum}
               setEditModeAlu={setEditModeAlu}
+              setSelectedAluminum={setSelectedAluminum}
+
             />
           )}
-          {editModeAlu && <AluminumForm />}
+          {editModeAlu && <AluminumForm setEditModeAlu={setEditModeAlu} />}
         </GridColumn>
       </Grid>
     </Segment>

@@ -23,6 +23,17 @@ const App = () => {
     setSelectedColor(colors.filter((a) => a.colorId === id)[0]);
   };
 
+  const handleOpenCreateFormAlu = () => {
+    setSelectedAluminum(null);
+    setEditModeAlu(true);
+  }
+
+  const handleOpenCreateColor = () => {
+    setSelectedColor(null);
+    setEditModeColor(true);
+  }
+
+
   useEffect(() => {
     axios
       .get<IAluminum[]>("http://localhost:5001/api/aluminums")
@@ -37,7 +48,7 @@ const App = () => {
 
   return (
     <Fragment>
-      <NavBar />
+      <NavBar openCreateFormAlu={handleOpenCreateFormAlu} openCreateFormColor={handleOpenCreateColor}/>
       <Container style={{ marginTop: "5em" }}>
         <AluminumDashboard
           aluminums={aluminums}
@@ -45,6 +56,7 @@ const App = () => {
           selectedAluminum={selectedAluminum}
           editModeAlu={editModeAlu}
           setEditModeAlu={setEditModeAlu}
+          setSelectedAluminum={setSelectedAluminum}
         />
         <ColorDashboard
           colors={colors}
@@ -52,7 +64,7 @@ const App = () => {
           selectedColor={selectedColor}
           editModeColor={editModeColor}
           setEditModeColor={setEditModeColor}
-          
+          setSelectedColor={setSelectedColor}
         />
       </Container>
     </Fragment>
