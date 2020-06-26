@@ -19,7 +19,7 @@ const AluminumDashboard: React.FC<IProps> = ({
   selectedAluminum,
   editModeAlu,
   setEditModeAlu,
-  setSelectedAluminum
+  setSelectedAluminum,
 }) => {
   return (
     <Segment clearing>
@@ -34,10 +34,14 @@ const AluminumDashboard: React.FC<IProps> = ({
               aluminum={selectedAluminum}
               setEditModeAlu={setEditModeAlu}
               setSelectedAluminum={setSelectedAluminum}
-
             />
           )}
-          {editModeAlu && <AluminumForm setEditModeAlu={setEditModeAlu} />}
+          {editModeAlu && (
+            <AluminumForm
+              setEditModeAlu={setEditModeAlu}
+              aluminum={selectedAluminum!}
+            />
+          )}
         </GridColumn>
       </Grid>
     </Segment>

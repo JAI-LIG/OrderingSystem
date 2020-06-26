@@ -20,7 +20,7 @@ const ColorDashboard: React.FC<IProps> = ({
   selectedColor,
   editModeColor,
   setEditModeColor,
-  setSelectedColor
+  setSelectedColor,
 }) => {
   return (
     <Segment>
@@ -37,7 +37,12 @@ const ColorDashboard: React.FC<IProps> = ({
               setSelectedColor={setSelectedColor}
             />
           )}
-          {editModeColor && <ColorForm setEditModeColor={setEditModeColor} />}
+          {editModeColor && (
+            <ColorForm
+              setEditModeColor={setEditModeColor}
+              color={selectedColor!}
+            />
+          )}
         </Grid.Column>
       </Grid>
     </Segment>
